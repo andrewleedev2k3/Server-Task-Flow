@@ -1,4 +1,4 @@
-import ApiError from '@/utils/ApiError'
+import { boardModel } from '@/models/boardModel'
 import slugify from 'slugify'
 
 const createNew = async (data) => {
@@ -11,7 +11,11 @@ const createNew = async (data) => {
         trim: true
       })
     }
-    return newBoard
+    const createdBoard = await boardModel.createdNew(newBoard)
+
+    const getNewBoard = await boardModel.findOneById(createdBoard.insertedId)
+
+    return getNewBoard
   } catch (error) {
     throw error
   }
