@@ -1,10 +1,9 @@
+import env from '@/config/environment'
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
 let taskFlowDatabaseInstance = null
-const url =
-  'mongodb+srv://andrewleedev276:andrewleedev276@cluster0.mjbyp6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-const db_name = 'task-flow'
-const client = new MongoClient(url, {
+
+const client = new MongoClient(env.MONGODB_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -14,7 +13,7 @@ const client = new MongoClient(url, {
 
 export const CONNECT_DB = async () => {
   await client.connect()
-  taskFlowDatabaseInstance = client.db(db_name)
+  taskFlowDatabaseInstance = client.db(env.DATABASE_NAME)
 }
 
 export const CLOSE_DB = async () => {
