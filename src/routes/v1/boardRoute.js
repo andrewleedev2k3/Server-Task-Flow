@@ -1,3 +1,4 @@
+import { boardController } from '@/controllers/boardController'
 import { boardValidation } from '@/validations/boardValidation'
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
@@ -10,5 +11,5 @@ Router.route('/')
       message: 'API GET LIST BOARDS'
     })
   })
-  .post(boardValidation.createNew)
+  .post(boardValidation.createNew, boardController.createNew)
 export const boardRoutes = Router
