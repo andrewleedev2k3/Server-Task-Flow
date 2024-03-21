@@ -1,4 +1,4 @@
-import { boardRoutes } from '@/routes/v1/boardRoutes'
+import { boardRoutes } from '@/routes/v1/boardRoute'
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
 
