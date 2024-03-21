@@ -17,6 +17,10 @@ export const CONNECT_DB = async () => {
   taskFlowDatabaseInstance = client.db(db_name)
 }
 
+export const CLOSE_DB = async () => {
+  await client.close()
+}
+
 export const GET_DB = () => {
   if (!taskFlowDatabaseInstance) throw new Error('Must connect Database first!')
   return taskFlowDatabaseInstance
