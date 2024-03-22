@@ -5,13 +5,10 @@ import { StatusCodes } from 'http-status-codes'
 
 const Router = express.Router()
 
-Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({
-      message: 'API GET LIST BOARDS'
-    })
-  })
-  .post(boardValidation.createNew, boardController.createNew)
+Router.route('/').post(boardValidation.createNew, boardController.createNew)
 
-Router.route('/:id').get(boardController.getDetail)
-export const boardRoutes = Router
+Router.route('/:id')
+  .get(boardController.getDetail)
+  .put(boardValidation.update, boardController.update)
+
+export const boardRoute = Router

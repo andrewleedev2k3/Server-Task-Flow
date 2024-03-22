@@ -5,7 +5,6 @@ import { cloneDeep } from 'lodash'
 import slugify from 'slugify'
 
 const createNew = async (data) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const newBoard = {
       ...data,
@@ -23,7 +22,6 @@ const createNew = async (data) => {
 }
 
 const getDetail = async (id) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const board = await boardModel.getDetail(id)
     if (!board) throw new ApiError(StatusCodes.NOT_FOUND, 'Board not found!')
@@ -42,7 +40,21 @@ const getDetail = async (id) => {
   }
 }
 
+const update = async (id, data) => {
+  try {
+    const updateData = {
+      ...data,
+      updatedAt: Date.now()
+    }
+    const updatedBoard = await boardModel.update(id, updateData)
+    return updatedBoard
+  } catch (error) {
+    throw error
+  }
+}
+
 export const boardService = {
   createNew,
-  getDetail
+  getDetail,
+  update
 }
