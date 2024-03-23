@@ -1,7 +1,6 @@
 import { boardController } from '@/controllers/boardController'
 import { boardValidation } from '@/validations/boardValidation'
 import express from 'express'
-import { StatusCodes } from 'http-status-codes'
 
 const Router = express.Router()
 
