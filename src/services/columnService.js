@@ -18,6 +18,20 @@ const createNew = async (data) => {
   }
 }
 
+const update = async (id, data) => {
+  try {
+    const updateData = {
+      ...data,
+      updatedAt: Date.now()
+    }
+    const updatedColumn = await columnModel.update(id, updateData)
+    return updatedColumn
+  } catch (error) {
+    throw error
+  }
+}
+
 export const columnService = {
-  createNew
+  createNew,
+  update
 }
