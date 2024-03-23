@@ -118,6 +118,10 @@ const update = async (boardId, data) => {
       }
     })
 
+    if (data.columnOrderIds) {
+      data.columnOrderIds = data.columnOrderIds.map((_id) => new ObjectId(_id))
+    }
+
     return await GET_DB()
       .collection(BOARD_COLLECTION_NAME)
       .findOneAndUpdate(
