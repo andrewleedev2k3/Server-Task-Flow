@@ -19,9 +19,19 @@ const START_SERVER = () => {
   // Middleware Error Handling
   app.use(errorHandlingMiddleware)
 
-  app.listen(env.APP_PORT, env.APP_HOST, () => {
-    console.log(`Hi ${env.AUTHOR}. App run at ${env.APP_HOST}:${env.APP_PORT} 🔥`)
-  })
+  if (env.BUILD_MODE === 'production') {
+    // Prod ENV
+    app.listen(process.env.PORT, () => {
+      console.log(`Hi ${env.AUTHOR}. App run at: ${process.env.PORT} 🔥`)
+    })
+  } else {
+    // Dev ENV
+    app.listen(env.LOCAL_DEV_APP_PORT, env.LOCAL_DEV_APP_HOST, () => {
+      console.log(
+        `Hi ${env.AUTHOR}. App run at ${env.LOCAL_DEV_APP_HOST}:${env.LOCAL_DEV_APP_PORT} 🔥`
+      )
+    })
+  }
 
   exitHook(() => {
     CLOSE_DB()
