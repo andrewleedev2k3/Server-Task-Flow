@@ -19,6 +19,7 @@ const START_SERVER = () => {
   // Middleware Error Handling
   app.use(errorHandlingMiddleware)
 
+
   if (env.BUILD_MODE === 'production') {
     // Prod ENV
     app.listen(process.env.PORT, () => {
@@ -32,6 +33,7 @@ const START_SERVER = () => {
       )
     })
   }
+
 
   exitHook(() => {
     CLOSE_DB()
